@@ -4,7 +4,7 @@ class Ucak {
   final String isim;
   final String resim;
   final String ozellik;
-  final String aciklama; // Detay sayfası için eklendi
+  final String aciklama;
   Ucak({required this.isim, required this.resim, required this.ozellik, required this.aciklama});
 }
 
@@ -50,7 +50,7 @@ class UcakUygulamasi extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundImage: AssetImage("assets/${ucaklar[index].resim}"),
+                backgroundImage: AssetImage("assets/{ucaklar[index].resim}"),
               ),
               title: Text(ucaklar[index].isim, style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text(ucaklar[index].ozellik),
