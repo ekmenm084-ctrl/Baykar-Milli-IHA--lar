@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Ucak {
+class Ucak {// uçakların her birine ayrı ayrı kod yazmak yerine bir liste sınıfı oluşurdum ve bu sınıfı her istediğim kod bloğunda çalıştırdım.
   final String isim;
   final String resim;
   final String ozellik;
@@ -8,7 +8,7 @@ class Ucak {
   Ucak({required this.isim, required this.resim, required this.ozellik, required this.aciklama});
 }
 
-List<Ucak> ucaklar = [
+List<Ucak> ucaklar = [//oluşturduğum sınıfın listesi
   Ucak(isim: "KIZIL ELMA", ozellik: "Manevra Kabiliyeti", resim: "KIZILELMA.png", aciklama:"Bayraktar KIZILELMA’nın öne çıkan kabiliyetleri arasında, üstün manevra yeteneği sayesinde sağlanan yüksek seviyeli hava-hava muharebe performansı yer almaktadır. Düşük radar kesit alanı, platformun görünürlüğünü asgari düzeye indirerek hava savunma ve taarruz görevlerinde etkin bir kuvvet çarpanı olmasını mümkün kılmaktadır."),
   Ucak(isim: "AKINCI", ozellik: "Gelişmiş Yapay Zeka", resim: "AKINCI.png", aciklama: "İstihbarat toplama kabiliyetlerinin ötesinde Bayraktar AKINCI, hassas kara ve hava hedeflerine yönelik taarruz icra edebilen güçlü bir silahlı platformdur. Çok yönlü görev seti, deniz güvenliği alanına da uzanmakta; denizaltı savunma harbi, su üstü harbi ve kıyı devriyesi gibi görevlerde etkin ve bütüncül çözümler sağlamaktadır"),
   Ucak(isim: "TB3", ozellik: "Deniz Platformları için Uygun", resim: "TB3.png", aciklama: "Bayraktar TB3 Silahlı İnsansız Hava Aracı (SİHA), Baykar tarafından geliştirilen millî ve özgün bir silahlı insansız hava aracı sistemidir. Kısa pistli uçak gemilerinden otonom olarak kalkış ve iniş yapabilme kabiliyetiyle deniz konuşlu harekâtlar için özel olarak tasarlanmıştır"),
@@ -19,19 +19,20 @@ List<Ucak> ucaklar = [
   Ucak(isim: "MİNİDİHA", ozellik: "Zorlu Hava Koşulları", resim: "MiniDiha.png", aciklama: "Bayraktar MİNİ, tamamen özgün ve milli olarak geliştirilmiş elektronik, yazılım ve yapısal bileşenleriyle Türkiye’nin ilk mini robot insansız hava aracı sistemidir. 2007 yılında Türk Silahlı Kuvvetleri envanterine girerek Türkiye’nin ilk milli İHA’sı unvanını kazanan Bayraktar MİNİ, alt sistemleri de dahil olmak üzere tamamen Baykar tarafından geliştirilmiştir. Bu başarıyı takiben, 2012 yılında Türkiye’nin ihraç edilen ilk milli İHA'sı olmuştur."),
 ];
 
-class UcakUygulamasi extends StatelessWidget {
+class UcakUygulamasi extends StatelessWidget {// statelessWidget değişmez değerler için her sınıf açtığımda bu widgetı kullandım.
   const UcakUygulamasi({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(//her sayfa için olmazsa olmaz bence öğrendiğim en önemli widget olabilir.
       backgroundColor: const Color.fromARGB(255, 139, 138, 138),
-      appBar: AppBar(
+      appBar: AppBar(//burda bu sayfanın başlığı için appbar yani bir nevi şerit başlık üzerinde ki butonları düzenlemek içinde bu terimin içinde değişiklikler yapılıyor.
         title: const Text("Baykar İnsansız Hava Araçları"),
         backgroundColor: Colors.blueAccent,
         actions: [
-          TextButton(
+          TextButton(//buton ekleme komutudur ekleyeceğimiz butonun özelliğini içne yazarız style komut ile.
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const UcakGalerisiSayfasi()));
+              Navigator.push//galeri butonuna bastığımızda bizi hangi sayfaya taşıayacağını belirten komut yani sayfalar arası geçiş widgetı.
+              (context, MaterialPageRoute(builder: (context) => const UcakGalerisiSayfasi()));
             },
             child: const Text("GALERİ", style: TextStyle(color: Colors.white)),
           ),
@@ -50,7 +51,7 @@ class UcakUygulamasi extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundImage: AssetImage("assets/{ucaklar[index].resim}"),
+                backgroundImage: AssetImage("assets/${ucaklar[index].resim}"),
               ),
               title: Text(ucaklar[index].isim, style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text(ucaklar[index].ozellik),
@@ -77,7 +78,7 @@ class DetaySayfasi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(secilenUcak.isim)),
-      body: SingleChildScrollView(
+      body: SingleChildScrollView(//scrolldan da anlaşılacağı üzere sayfada kaydırmayı sağlayan komuttur.
         child: Column(
           children: [
             Image.asset("assets/${secilenUcak.resim}", width: double.infinity, fit: BoxFit.cover),
@@ -113,7 +114,7 @@ class UcakHakkinda extends StatelessWidget {
         title: const Text("Hakkında",style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),),
         backgroundColor: Colors.blueAccent,
         ),
-      body: const Center(
+      body: const Center(//sayfada ortalamaya yarar(center)
         child: Padding(
           padding: EdgeInsets.all(20.0),
           child: Text(
@@ -136,7 +137,7 @@ class UcakGalerisiSayfasi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.grey,// arka plan rengi veya başka şeyleri ayarlamada görevli komut.
       appBar: AppBar(title: const Text("Görsel TANITIM Galeri"),
       backgroundColor: Colors.blueAccent
 
@@ -151,12 +152,12 @@ class UcakGalerisiSayfasi extends StatelessWidget {
         ),
         itemCount: ucaklar.length,
         itemBuilder: (context, index) {
-          return Container(
+          return Container(// html deki div gibidir bir yapıya karakter kazandırır ve sadece o yapı üzernde değişiklikler yapmamız sağlar.
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade300),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Column(
+            child: Column(//children sayesinde birden fazla komut yazılabilir içine.asıl görevi hizalamadır.
               children: [
                 Expanded(
                   child: ClipRRect(
@@ -164,7 +165,7 @@ class UcakGalerisiSayfasi extends StatelessWidget {
                     child: Image.asset("assets/${ucaklar[index].resim}", fit: BoxFit.contain),
                   ),
                 ),
-                Padding(
+                Padding(//sayfanın içindeki boşlukları ayarlamada görevli komut.
                   padding: const EdgeInsets.all(4.0),
                   child: Text(ucaklar[index].isim, style: const TextStyle(fontWeight: FontWeight.bold)),
                 ),
@@ -177,7 +178,7 @@ class UcakGalerisiSayfasi extends StatelessWidget {
   }
 }
 
-void main() {
+void main() {//tüm sistemin çalışmasını sağlayan kod bloğu.
   runApp(
     const MaterialApp(
       home: UcakUygulamasi(),
